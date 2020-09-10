@@ -1,30 +1,3 @@
-/*
-#include "intrins.h"
-#include "codetab.h"
-#include "LQ12864.h"
-
-void main(void)
-{
-	OLED_Init();
-	while(1)
-	{
-		OLED_P16x16Ch(56, 4, 32);//Ç°
-		OLED_delay(500);
-		OLED_CLS();//ºÚÆÁ
-		OLED_P16x16Ch(56, 4, 33);//ºó
-		OLED_delay(500);
-		OLED_CLS();//ºÚÆÁ
-		OLED_P16x16Ch(56, 4, 34);//×ó
-		OLED_delay(500);
-		OLED_CLS();//ºÚÆÁ
-		OLED_P16x16Ch(56, 4, 35);//ÓÒ
-		OLED_delay(500);
-		OLED_CLS();//ºÚÆÁ
-	}
-}
-*/
-
-//#include<reg52.h>
 #include "intrins.h"
 #include "codetab.h"
 #include "LQ12864.h"
@@ -284,8 +257,9 @@ void main(void)
     {
 			if(r_buf != temp) {
 				temp = r_buf;
-				OLED_CLS();
-				OLED_P8x16Str(48, 4, "A");
+//				OLED_CLS();
+				OLED_P8x16Str(48, 4, "FORWART ");
+//				OLED_P16x16Ch(48, 3, 32);
 			}
       run();
     }
@@ -293,8 +267,9 @@ void main(void)
     {
 			if(r_buf != temp) {
 				temp = r_buf;
-				OLED_CLS();
-				OLED_P8x16Str(56, 4, "B");
+//				OLED_CLS();
+				OLED_P8x16Str(48, 4, "BACK    ");
+//				OLED_P16x16Ch(48, 3, 33);
 			}
       back();
     }
@@ -302,8 +277,8 @@ void main(void)
     {
 			if(r_buf != temp) {
 				temp = r_buf;
-				OLED_CLS();
-				OLED_P8x16Str(56, 4, "C");
+//				OLED_CLS();
+				OLED_P8x16Str(48, 4, "LEFT    ");
 			}
       left();
     }
@@ -311,8 +286,8 @@ void main(void)
     {
 			if(r_buf != temp) {
 				temp = r_buf;
-				OLED_CLS();
-				OLED_P8x16Str(55, 4, "D");
+//				OLED_CLS();
+				OLED_P8x16Str(48, 4, "RIGHT   ");
 			}
       right();
     }
@@ -320,7 +295,8 @@ void main(void)
     {
 			if(r_buf != temp) {
 				temp = r_buf;
-				OLED_CLS();
+//				OLED_CLS();
+				OLED_P8x16Str(48, 4, "        ");
 			}
       stop();
     }
@@ -328,36 +304,46 @@ void main(void)
     {
 			if(r_buf != temp) {
 				temp = r_buf;
-				OLED_CLS();
-				OLED_P8x16Str(55, 4, "E");
+//				OLED_CLS();
+				OLED_P8x16Str(48, 4, "XUN_JI  ");
 			}
 			OLED_delay(10);
       Left_Speed_Ratio = 2;			// ?????????????20%
       Right_Speed_Ratio = 2; // ?????????????20%
+			xun_ji = 1;
+    }
+		
+		while(xun_ji)
+    {
+     if(r_buf == 'r') {
+			xun_ji = 0;
+			break;
+		 }
 			xunji();
     }
+		
 		if(r_buf == '8') 
 		{
 			if(r_buf != temp) {
 				temp = r_buf;
-				OLED_CLS();
-				OLED_P8x16Str(32, 4, "F");
+//				OLED_CLS();
+				OLED_P8x16Str(48, 4, "BI_ZHANG");
 			}
 			OLED_delay(10);
       Left_Speed_Ratio = 2;			// ?????????????20%
       Right_Speed_Ratio = 2;
-			bizhang();
+			bi_zhang = 1;
 		}
-    //    run();
-    //    delay1s(); delay1s();  delay1s();  delay1s();  delay1s();
-    //    back();
-    //    delay1s(); delay1s();  delay1s();  delay1s();  delay1s();
-    //    left();
-    //    delay1s(); delay1s();  delay1s();  delay1s();  delay1s();
-    //    right();
-    //    delay1s(); delay1s();  delay1s();  delay1s();  delay1s();
-    //    stop();
-    //    delay1s(); delay1s();  delay1s();  delay1s();  delay1s();
+		
+		while(bi_zhang)
+    {
+     if(r_buf == 'r') {
+			bi_zhang = 0;
+			break;
+		 }
+			bizhang();
+    }
+		
   }
 }
 
@@ -402,16 +388,19 @@ void UARTInterrupt(void) interrupt 4
     {
       Left_Speed_Ratio = 2;  // ?????????????20%
       Right_Speed_Ratio = 2; // ?????????????20%
- //     xun_ji = 1;
-			xunji();
+      xun_ji = 1;
+			
     }
 		/*
     while(xun_ji)
     {
-     
-			
-			
+     if(r_buf == 'r'){
+			xun_ji = 0;
+			break;
+		 }
+			xunji();
     }
+		
 		*//*
     if(r_buf == '8')  // ??????
     {
