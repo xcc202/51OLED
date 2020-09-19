@@ -1,29 +1,29 @@
 /************************************************************************************
-* 1. void OLED_delay(unsigned int z) -- ÑÓÊ±º¯Êı,ºÁÃë
-* 2. void IIC_Start() -- ¿ªÆôI2C×ÜÏß
-* 3. void IIC_Stop() -- ¹Ø±ÕI2C×ÜÏß
-* 4. void Write_IIC_Byte(unsigned char IIC_Byte) -- Í¨¹ıI2C×ÜÏßĞ´Ò»¸öbyteµÄÊı¾İ
-* 5. void OLED_WrDat(unsigned char dat) -- ÏòOLEDÆÁĞ´Êı¾İ
-* 6. void OLED_WrCmd(unsigned char cmd) -- ÏòOLEDÆÁĞ´ÃüÁî
-* 7. void OLED_Set_Pos(unsigned char x, unsigned char y) -- ÉèÖÃÏÔÊ¾×ø±ê
-* 8. void OLED_Fill(unsigned char bmp_dat) -- È«ÆÁÏÔÊ¾(ÏÔÊ¾BMPÍ¼Æ¬Ê±²Å»áÓÃµ½´Ë¹¦ÄÜ)
-* 9. void OLED_CLS(void) -- ¸´Î»/ÇåÆÁ
-* 10. void OLED_Init(void) -- OLEDÆÁ³õÊ¼»¯³ÌĞò£¬´Ëº¯ÊıÓ¦ÔÚ²Ù×÷ÆÁÄ»Ö®Ç°×îÏÈµ÷ÓÃ
-* 11. void OLED_P6x8Str(unsigned char x, y,unsigned char ch[]) -- 6x8µãÕû£¬ÓÃÓÚÏÔÊ¾ASCIIÂëµÄ×îĞ¡ÕóÁĞ£¬²»Ì«ÇåÎú
-* 12. void OLED_P8x16Str(unsigned char x, y,unsigned char ch[]) -- 8x16µãÕû£¬ÓÃÓÚÏÔÊ¾ASCIIÂë£¬·Ç³£ÇåÎú
-* 13.void OLED_P16x16Ch(unsigned char x, y, N) -- 16x16µãÕû£¬ÓÃÓÚÏÔÊ¾ºº×ÖµÄ×îĞ¡ÕóÁĞ£¬¿ÉÉèÖÃ¸÷ÖÖ×ÖÌå¡¢¼Ó´Ö¡¢ÇãĞ±¡¢ÏÂ»®ÏßµÈ
-* 14.void Draw_BMP(unsigned char x0, y0,x1, y1,unsigned char BMP[]) -- ½«128x64ÏñËØµÄBMPÎ»Í¼ÔÚÈ¡×ÖÈí¼şÖĞËã³ö×Ö±í£¬È»ºó¸´ÖÆµ½codetabÖĞ£¬´Ëº¯Êıµ÷ÓÃ¼´¿É
+* 1. void OLED_delay(unsigned int z) -- å»¶æ—¶å‡½æ•°,æ¯«ç§’
+* 2. void IIC_Start() -- å¼€å¯I2Cæ€»çº¿
+* 3. void IIC_Stop() -- å…³é—­I2Cæ€»çº¿
+* 4. void Write_IIC_Byte(unsigned char IIC_Byte) -- é€šè¿‡I2Cæ€»çº¿å†™ä¸€ä¸ªbyteçš„æ•°æ®
+* 5. void OLED_WrDat(unsigned char dat) -- å‘OLEDå±å†™æ•°æ®
+* 6. void OLED_WrCmd(unsigned char cmd) -- å‘OLEDå±å†™å‘½ä»¤
+* 7. void OLED_Set_Pos(unsigned char x, unsigned char y) -- è®¾ç½®æ˜¾ç¤ºåæ ‡
+* 8. void OLED_Fill(unsigned char bmp_dat) -- å…¨å±æ˜¾ç¤º(æ˜¾ç¤ºBMPå›¾ç‰‡æ—¶æ‰ä¼šç”¨åˆ°æ­¤åŠŸèƒ½)
+* 9. void OLED_CLS(void) -- å¤ä½/æ¸…å±
+* 10. void OLED_Init(void) -- OLEDå±åˆå§‹åŒ–ç¨‹åºï¼Œæ­¤å‡½æ•°åº”åœ¨æ“ä½œå±å¹•ä¹‹å‰æœ€å…ˆè°ƒç”¨
+* 11. void OLED_P6x8Str(unsigned char x, y,unsigned char ch[]) -- 6x8ç‚¹æ•´ï¼Œç”¨äºæ˜¾ç¤ºASCIIç çš„æœ€å°é˜µåˆ—ï¼Œä¸å¤ªæ¸…æ™°
+* 12. void OLED_P8x16Str(unsigned char x, y,unsigned char ch[]) -- 8x16ç‚¹æ•´ï¼Œç”¨äºæ˜¾ç¤ºASCIIç ï¼Œéå¸¸æ¸…æ™°
+* 13.void OLED_P16x16Ch(unsigned char x, y, N) -- 16x16ç‚¹æ•´ï¼Œç”¨äºæ˜¾ç¤ºæ±‰å­—çš„æœ€å°é˜µåˆ—ï¼Œå¯è®¾ç½®å„ç§å­—ä½“ã€åŠ ç²—ã€å€¾æ–œã€ä¸‹åˆ’çº¿ç­‰
+* 14.void Draw_BMP(unsigned char x0, y0,x1, y1,unsigned char BMP[]) -- å°†128x64åƒç´ çš„BMPä½å›¾åœ¨å–å­—è½¯ä»¶ä¸­ç®—å‡ºå­—è¡¨ï¼Œç„¶åå¤åˆ¶åˆ°codetabä¸­ï¼Œæ­¤å‡½æ•°è°ƒç”¨å³å¯
 *************************************************************************************/
 
 #include "reg52.h"
 
 // ------------------------------------------------------------
-// IO¿ÚÄ£ÄâI2CÍ¨ĞÅ
-// SCL½ÓP2^6
-// SDA½ÓP2^7
+// IOå£æ¨¡æ‹ŸI2Cé€šä¿¡
+// SCLæ¥P2^6
+// SDAæ¥P2^7
 // ------------------------------------------------------------
-sbit SCL=P2^6; //´®ĞĞÊ±ÖÓ
-sbit SDA=P2^7; //´®ĞĞÊı¾İ
+sbit SCL=P2^6; //ä¸²è¡Œæ—¶é’Ÿ
+sbit SDA=P2^7; //ä¸²è¡Œæ•°æ®
 
 #define high 1
 #define low 0
@@ -31,7 +31,7 @@ sbit SDA=P2^7; //´®ĞĞÊı¾İ
 #define	Brightness	0xCF 
 #define X_WIDTH 	128
 #define Y_WIDTH 	64
-/*********************OLEDÇı¶¯³ÌĞòÓÃµÄÑÓÊ±³ÌĞò************************************/
+/*********************OLEDé©±åŠ¨ç¨‹åºç”¨çš„å»¶æ—¶ç¨‹åº************************************/
 void OLED_delay(unsigned int z)
 {
 	unsigned int x,y;
@@ -62,7 +62,7 @@ void IIC_Stop()
 }
 
 /**********************************************
-// Í¨¹ıI2C×ÜÏßĞ´Ò»¸ö×Ö½Ú
+// é€šè¿‡I2Cæ€»çº¿å†™ä¸€ä¸ªå­—èŠ‚
 **********************************************/
 void Write_IIC_Byte(unsigned char IIC_Byte)
 {
@@ -82,7 +82,7 @@ void Write_IIC_Byte(unsigned char IIC_Byte)
 	SCL=0;
 }
 
-/*********************OLEDĞ´Êı¾İ************************************/ 
+/*********************OLEDå†™æ•°æ®************************************/ 
 void OLED_WrDat(unsigned char IIC_Data)
 {
 	IIC_Start();
@@ -91,7 +91,7 @@ void OLED_WrDat(unsigned char IIC_Data)
 	Write_IIC_Byte(IIC_Data);
 	IIC_Stop();
 }
-/*********************OLEDĞ´ÃüÁî************************************/
+/*********************OLEDå†™å‘½ä»¤************************************/
 void OLED_WrCmd(unsigned char IIC_Command)
 {
 	IIC_Start();
@@ -100,14 +100,14 @@ void OLED_WrCmd(unsigned char IIC_Command)
 	Write_IIC_Byte(IIC_Command);
 	IIC_Stop();
 }
-/*********************OLED ÉèÖÃ×ø±ê************************************/
+/*********************OLED è®¾ç½®åæ ‡************************************/
 void OLED_Set_Pos(unsigned char x, unsigned char y) 
 { 
 	OLED_WrCmd(0xb0+y);
 	OLED_WrCmd(((x&0xf0)>>4)|0x10);
 	OLED_WrCmd((x&0x0f)|0x01);
 } 
-/*********************OLEDÈ«ÆÁ************************************/
+/*********************OLEDå…¨å±************************************/
 void OLED_Fill(unsigned char bmp_dat) 
 {
 	unsigned char y,x;
@@ -120,7 +120,7 @@ void OLED_Fill(unsigned char bmp_dat)
 		OLED_WrDat(bmp_dat);
 	}
 }
-/*********************OLED¸´Î»************************************/
+/*********************OLEDå¤ä½************************************/
 void OLED_CLS(void)
 {
 	unsigned char y,x;
@@ -133,18 +133,18 @@ void OLED_CLS(void)
 		OLED_WrDat(0);
 	}
 }
-/*********************OLED³õÊ¼»¯************************************/
+/*********************OLEDåˆå§‹åŒ–************************************/
 void OLED_Init(void)
 {
-	OLED_delay(500);//³õÊ¼»¯Ö®Ç°µÄÑÓÊ±ºÜÖØÒª£¡
+	OLED_delay(500);//åˆå§‹åŒ–ä¹‹å‰çš„å»¶æ—¶å¾ˆé‡è¦ï¼
 	OLED_WrCmd(0xae);//--turn off oled panel
 	OLED_WrCmd(0x00);//---set low column address
 	OLED_WrCmd(0x10);//---set high column address
 	OLED_WrCmd(0x40);//--set start line address  Set Mapping RAM Display Start Line (0x00~0x3F)
 	OLED_WrCmd(0x81);//--set contrast control register
 	OLED_WrCmd(Brightness); // Set SEG Output Current Brightness
-	OLED_WrCmd(0xa1);//--Set SEG/Column Mapping     0xa0×óÓÒ·´ÖÃ 0xa1Õı³£
-	OLED_WrCmd(0xc8);//Set COM/Row Scan Direction   0xc0ÉÏÏÂ·´ÖÃ 0xc8Õı³£
+	OLED_WrCmd(0xa1);//--Set SEG/Column Mapping     0xa0å·¦å³åç½® 0xa1æ­£å¸¸
+	OLED_WrCmd(0xc8);//Set COM/Row Scan Direction   0xc0ä¸Šä¸‹åç½® 0xc8æ­£å¸¸
 	OLED_WrCmd(0xa6);//--set normal display
 	OLED_WrCmd(0xa8);//--set multiplex ratio(1 to 64)
 	OLED_WrCmd(0x3f);//--1/64 duty
@@ -165,10 +165,10 @@ void OLED_Init(void)
 	OLED_WrCmd(0xa4);// Disable Entire Display On (0xa4/0xa5)
 	OLED_WrCmd(0xa6);// Disable Inverse Display On (0xa6/a7) 
 	OLED_WrCmd(0xaf);//--turn on oled panel
-	OLED_Fill(0x00); //³õÊ¼ÇåÆÁ
+	OLED_Fill(0x00); //åˆå§‹æ¸…å±
 	OLED_Set_Pos(0,0);
 } 
-/***************¹¦ÄÜÃèÊö£ºÏÔÊ¾6*8Ò»×é±ê×¼ASCII×Ö·û´®	ÏÔÊ¾µÄ×ø±ê£¨x,y£©£¬yÎªÒ³·¶Î§0¡«7****************/
+/***************åŠŸèƒ½æè¿°ï¼šæ˜¾ç¤º6*8ä¸€ç»„æ ‡å‡†ASCIIå­—ç¬¦ä¸²	æ˜¾ç¤ºçš„åæ ‡ï¼ˆx,yï¼‰ï¼Œyä¸ºé¡µèŒƒå›´0ï½7****************/
 void OLED_P6x8Str(unsigned char x, y,unsigned char ch[])
 {
 	unsigned char c=0,i=0,j=0;
@@ -183,7 +183,7 @@ void OLED_P6x8Str(unsigned char x, y,unsigned char ch[])
 		j++;
 	}
 }
-/*******************¹¦ÄÜÃèÊö£ºÏÔÊ¾8*16Ò»×é±ê×¼ASCII×Ö·û´®	 ÏÔÊ¾µÄ×ø±ê£¨x,y£©£¬yÎªÒ³·¶Î§0¡«7****************/
+/*******************åŠŸèƒ½æè¿°ï¼šæ˜¾ç¤º8*16ä¸€ç»„æ ‡å‡†ASCIIå­—ç¬¦ä¸²	 æ˜¾ç¤ºçš„åæ ‡ï¼ˆx,yï¼‰ï¼Œyä¸ºé¡µèŒƒå›´0ï½7****************/
 void OLED_P8x16Str(unsigned char x, y,unsigned char ch[])
 {
 	unsigned char c=0,i=0,j=0;
@@ -201,7 +201,7 @@ void OLED_P8x16Str(unsigned char x, y,unsigned char ch[])
 		j++;
 	}
 }
-/*****************¹¦ÄÜÃèÊö£ºÏÔÊ¾16*16µãÕó  ÏÔÊ¾µÄ×ø±ê£¨x,y£©£¬yÎªÒ³·¶Î§0¡«7****************************/
+/*****************åŠŸèƒ½æè¿°ï¼šæ˜¾ç¤º16*16ç‚¹é˜µ  æ˜¾ç¤ºçš„åæ ‡ï¼ˆx,yï¼‰ï¼Œyä¸ºé¡µèŒƒå›´0ï½7****************************/
 void OLED_P16x16Ch(unsigned char x, y, N)
 {
 	unsigned char wm=0;
@@ -219,7 +219,46 @@ void OLED_P16x16Ch(unsigned char x, y, N)
 		adder += 1;
 	} 	  	
 }
-/***********¹¦ÄÜÃèÊö£ºÏÔÊ¾ÏÔÊ¾BMPÍ¼Æ¬128¡Á64ÆğÊ¼µã×ø±ê(x,y),xµÄ·¶Î§0¡«127£¬yÎªÒ³µÄ·¶Î§0¡«7*****************/
+
+       /** æ˜¾ç¤º 32x32 ç‚¹é˜µ  æ˜¾ç¤ºçš„åæ ‡ï¼ˆx,yï¼‰ï¼Œyä¸ºé¡µèŒƒå›´0ï½7 */
+void OLED_P32x32Ch(unsigned char x, unsigned char y, unsigned int N)
+{
+        unsigned char wm=0;
+        unsigned int adder=128*N;
+        OLED_Set_Pos(x , y);
+
+        for(wm = 0;wm < 32;wm++)
+        {
+                OLED_WrDat(F32x32[adder]);
+                adder += 1;
+        }
+
+        OLED_Set_Pos(x,y+1 );
+
+        for(wm = 0;wm <32;wm++)
+        {
+                OLED_WrDat(F32x32[adder]);
+                adder += 1;
+        }
+
+	OLED_Set_Pos(x , y+2);
+
+        for(wm = 0;wm < 32;wm++)
+        {
+                OLED_WrDat(F32x32[adder]);
+                adder += 1;
+        }
+				
+        OLED_Set_Pos(x,y+3 );
+
+        for(wm = 0;wm <32;wm++)
+        {
+                OLED_WrDat(F32x32[adder]);
+                adder += 1;
+        }
+}
+
+/***********åŠŸèƒ½æè¿°ï¼šæ˜¾ç¤ºæ˜¾ç¤ºBMPå›¾ç‰‡128Ã—64èµ·å§‹ç‚¹åæ ‡(x,y),xçš„èŒƒå›´0ï½127ï¼Œyä¸ºé¡µçš„èŒƒå›´0ï½7*****************/
 void Draw_BMP(unsigned char x0, y0,x1, y1,unsigned char BMP[])
 {
 	unsigned int j=0;
