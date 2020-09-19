@@ -95,9 +95,9 @@ void OLED_WrDat(unsigned char IIC_Data)
 void OLED_WrCmd(unsigned char IIC_Command)
 {
 	IIC_Start();
-	Write_IIC_Byte(0x78);            //Slave address,SA0=0   // 0 1 1 1  1 0 0 0(最后一位为0表示写数据（Write）)
-	Write_IIC_Byte(0x00);			//write command
-	Write_IIC_Byte(IIC_Command);
+	Write_IIC_Byte(0x78);            //Slave address,SA0=0   // 0 1 1 1  1 0 0 0 (最后一位为0表示写数据（Write）)
+	Write_IIC_Byte(0x00);			//write command  // 0(（co = 0）表明按“字节”传数据) 0(（D / C, Data=1, Command=0）数据是命令,取0) 0 0  0 0 0 0
+ 	Write_IIC_Byte(IIC_Command);
 	IIC_Stop();
 }
 /*********************OLED 设置坐标************************************/
