@@ -95,7 +95,7 @@ void OLED_WrDat(unsigned char IIC_Data)
 void OLED_WrCmd(unsigned char IIC_Command)
 {
 	IIC_Start();
-	Write_IIC_Byte(0x78);            //Slave address,SA0=0
+	Write_IIC_Byte(0x78);            //Slave address,SA0=0   // 0 1 1 1  1 0 0 0(最后一位为0表示写数据（Write）)
 	Write_IIC_Byte(0x00);			//write command
 	Write_IIC_Byte(IIC_Command);
 	IIC_Stop();
@@ -158,8 +158,8 @@ void OLED_Init(void)
 	OLED_WrCmd(0x12);
 	OLED_WrCmd(0xdb);//--set vcomh
 	OLED_WrCmd(0x40);//Set VCOM Deselect Level
-	OLED_WrCmd(0x20);//-Set Page Addressing Mode (0x00/0x01/0x02)
-	OLED_WrCmd(0x02);//
+	OLED_WrCmd(0x20);//-Set Page Addressing Mode (0x00/0x01/0x02) // 0x20进入定义寻址模式
+	OLED_WrCmd(0x02);//                                           // 0x02寻址模式定义为页寻址  
 	OLED_WrCmd(0x8d);//--set Charge Pump enable/disable
 	OLED_WrCmd(0x14);//--set(0x10) disable
 	OLED_WrCmd(0xa4);// Disable Entire Display On (0xa4/0xa5)
